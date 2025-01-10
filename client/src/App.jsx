@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import {Routes, Route, Navigate} from "react-router-dom";
 import { useAuthStore } from "./store/useAuthStore.js";
 import { Loader } from "lucide-react";
+import { Toaster } from "react-hot-toast";
 import NavbarComp from "./components/Navbar";
 import HompageComp from "./pages/HomePage.jsx";
 import SignupPageComp from "./pages/SignupPage";
@@ -35,6 +36,7 @@ function App() {
         <Route path="/settings" element={<SettingsPageComp />} />
         <Route path="/profile" element={authUser ? <ProfilePageComp /> : <Navigate to="/login"/>} />
       </Routes>
+      <Toaster />
     </>
   )
 }
