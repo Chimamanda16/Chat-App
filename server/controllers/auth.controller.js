@@ -72,7 +72,7 @@ export const login = async(req, res) => {
         }
         //Generate token
         generateToken(user._id, res);
-        res.status(200).json({
+        res.status(201).json({
             _id: user._id,
             fullName: user.fullName,
             email: user.email
@@ -86,10 +86,11 @@ export const logout = (req, res) => {
     try {
         res.cookie("jwt", "", {
             maxAge: 0
-        })
+        });
+        res.status(200).json({ message: "Logged out successfully" });
     } catch (error) {
         console.error("Error in logout controller", error.message);
-        return res.status(500).send({message: "Internal server error"})
+        res.status(500).json({message: "Internal server error"});
     }
 }
 
@@ -98,14 +99,14 @@ export const updateProfile = async(req, res) => {
         const { profilePic } = req.body;
         const { userId } = req.user._id;
         if(!profilePic){
-            return res.status(400).send("Please upload a profile picture")
+            return res.status(400).send("Please upload a profile picture");
         }
         const uploadResponse = await cloudinary.uploader.upload(profilePic);
         const newUser = await User.findByIdAndUpdate(userId, {profilePic: uploadResponse.secure_url}, {new: true});
         res.status(200).json({newUser});
     } catch (error) {
         console.error("Error in updateProfile controller", error.message);
-        res.status(500).send("internal Server Error")
+        res.status(500).send("internal Server Error");
     }
 }
 
