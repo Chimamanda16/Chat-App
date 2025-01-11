@@ -42,6 +42,7 @@ export const useAuthStore = create((set) =>({
             toast.success("Logged in successfully");
         } catch (error) {
             console.log(error.message);
+            toast.error("An error occurred.");
         }
         finally{
             set({isLoggingIn: false});
@@ -54,7 +55,21 @@ export const useAuthStore = create((set) =>({
             toast.success("Logged out successfully");
         } catch (error) {
             console.log(error.message);
-            toast.error("An error occurred.", error.message);
+            toast.error("An error occurred.");
+        }
+    },
+    updateProfile: async(data)=>{
+        set({isUpdatingProfile: true});
+        try {
+            const response = await axiosInstance.put("/auth/update-profile", data);
+            set({authUser: response.data});
+            toast.success("Profile Picture Updated");
+        } catch (error) {
+            console.log(error.message);
+            toast.error("An error occurred.");
+        }
+        finally{
+            set({isUpdatingProfile: false});
         }
     }
 }))
