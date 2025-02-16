@@ -8,7 +8,7 @@ import NavbarComp from "./components/Navbar";
 import HompageComp from "./pages/Homepage.jsx";
 import SignupPageComp from "./pages/SignupPage";
 import LoginPageComp from "./pages/LoginPage";
-import SettingsPageComp from "./pages/SettingsPage";
+import SettingsPageComp from "./pages/Settingspage";
 import ProfilePageComp from "./pages/ProfilePage";
 
 function App() {
