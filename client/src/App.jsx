@@ -5,7 +5,7 @@ import { useThemeStore } from "./store/useThemeStore.js";
 import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 import NavbarComp from "./components/Navbar";
-import HompageComp from "./pages/HomePage.jsx";
+import HompageComp from "./pages/Homepage.jsx";
 import SignupPageComp from "./pages/SignupPage";
 import LoginPageComp from "./pages/LoginPage";
 import SettingsPageComp from "./pages/SettingsPage";
